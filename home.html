@@ -135,7 +135,7 @@ $("#signinclick").click(function(){
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
     }).then(
         function(data){
-            localStorage.setItem("token", data);
+            localStorage.setItem("token", data.token);
             window.location.replace("/profile.html");
         }
     ).catch(
