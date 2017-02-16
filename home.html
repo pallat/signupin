@@ -116,7 +116,15 @@ $("#signupclick").click(function(){
     {
         method: "POST",
         body: JSON.stringify({email: $('#email').val(), password: $('#password').val()})
-    });
+    }).then(
+        function(data){
+            console.log(data);
+        }
+    ).catch(
+        function(err){
+            console.log(err);
+        }
+    );
     // $.ajax({
     //         type: "POST",
     //         method: "POST",
