@@ -111,8 +111,19 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 
 <script type="text/javascript">
 $("#signupclick").click(function(){
-$.post("test.php", { json_string:JSON.stringify({email:$("#email").val(), password:$("#password").val()}) });
-});
+    $.ajax({
+            type: "POST",
+            url: "https://murmuring-retreat-56179.herokuapp.com/signup",
+            crossDomain: true,
+            data:JSON.stringify({email:$("#email").val(), password:$("#password").val()}),
+            success: function (data) {
+                console.log("success");
+                // do something with server response data
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
 
 </script>
 
