@@ -133,27 +133,13 @@ $("#signinclick").click(function(){
         method: "POST",
         mode: 'no-cors',
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
-    }).then(
-        function(response){
-            return response.json();
-            // if(response.ok) { 
-                // var contentType = response.headers.get("content-type");
-                // if(contentType && contentType.indexOf("application/json") !== -1) {
-                //     return response.json();
-                // } else {
-                //     console.log("Oops, we haven't got JSON!");
-                // }
-            // }
-        }
-    ).then(function(json) {
-        console.log(json);
-        // localStorage.setItem("token", json);
-        // window.location.replace("/profile.html");
-    }).catch(
-        function(err){
-            console.log(err);
-        }
-    );
+    }).then(function(response) { 
+	// Convert to JSON
+        return response.json();
+    }).then(function(j) {
+        // Yay, `j` is a JavaScript object
+        console.log(j); 
+    });
 });
 
 </script>
