@@ -114,9 +114,9 @@ $("#signupclick").click(function(){
     console.log("click");
     $.ajax({
             type: "POST",
-            url: "http://murmuring-retreat-56179.herokuapp.com/signup",
+            url: "https://murmuring-retreat-56179.herokuapp.com/signup",
             crossDomain: true,
-            dataType: "json",
+            dataType: "JSONP",
             contentType: "application/json",
             data: JSON.stringify({email: $('#email').val(), password: $('#password').val()}),
             success: function (data) {
