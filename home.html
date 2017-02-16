@@ -135,20 +135,20 @@ $("#signinclick").click(function(){
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
     }).then(
         function(response){
-            return response.text();
+            return response.json();
             // if(response.ok) { 
-                var contentType = response.headers.get("content-type");
-                if(contentType && contentType.indexOf("application/json") !== -1) {
-                    return response.json();
-                } else {
-                    console.log("Oops, we haven't got JSON!");
-                }
+                // var contentType = response.headers.get("content-type");
+                // if(contentType && contentType.indexOf("application/json") !== -1) {
+                //     return response.json();
+                // } else {
+                //     console.log("Oops, we haven't got JSON!");
+                // }
             // }
         }
     ).then(function(json) {
         console.log(json);
-        localStorage.setItem("token", json);
-        window.location.replace("/profile.html");
+        // localStorage.setItem("token", json);
+        // window.location.replace("/profile.html");
     }).catch(
         function(err){
             console.log(err);
