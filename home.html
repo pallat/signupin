@@ -135,7 +135,7 @@ $("#signinclick").click(function(){
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
     }).then(
         function(response){
-            console.log(response.type());
+            console.log(response.type);
             console.log(response.headers());
             // return response.json();
             // if(response.ok) { 
