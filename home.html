@@ -134,9 +134,18 @@ $("#signinclick").click(function(){
         mode: 'no-cors',
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
     }).then(
-        function(data){
-            localStorage.setItem("token", data.token);
-            window.location.replace("/profile.html");
+        function(response){
+            if(response.ok) {
+                var contentType = response.headers.get("content-type");
+                if(contentType && contentType.indexOf("application/json") !== -1) {
+                    return response.json().then(function(json) {
+                        localStorage.setItem("token", data.token);
+                        window.location.replace("/profile.html");
+                    });
+                } else {
+                    console.log("Oops, we haven't got JSON!");
+                }
+            }
         }
     ).catch(
         function(err){
