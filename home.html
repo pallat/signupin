@@ -115,7 +115,7 @@ $("#signupclick").click(function(){
     fetch("http://murmuring-retreat-56179.herokuapp.com/signup",
     {
         method: "POST",
-        credentials: "include",
+        mode: 'cors',
         body: JSON.stringify({email: $('#email').val(), password: $('#password').val()})
     }).then(
         function(data){
@@ -126,22 +126,6 @@ $("#signupclick").click(function(){
             console.log(err);
         }
     );
-    // $.ajax({
-    //         type: "POST",
-    //         method: "POST",
-    //         url: "http://murmuring-retreat-56179.herokuapp.com/signup",
-    //         crossDomain: true,
-    //         dataType: "jsonp",
-    //         contentType: "application/json",
-    //         data: JSON.stringify({email: $('#email').val(), password: $('#password').val()}),
-    //         success: function (data) {
-    //             console.log("success");
-    //             // do something with server response data
-    //         },
-    //         error: function (err) {
-    //             console.log(err);
-    //         }
-    //     });
 });
 
 </script>
