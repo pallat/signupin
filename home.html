@@ -118,6 +118,9 @@ $("#signupclick").click(function(){
             crossDomain: true,
             dataType: "json",
             contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },
             data: JSON.stringify({email: $('#email').val(), password: $('#password').val()}),
             success: function (data) {
                 console.log("success");
