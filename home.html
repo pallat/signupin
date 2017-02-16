@@ -135,7 +135,7 @@ $("#signinclick").click(function(){
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
     }).then(function(response) { 
 	// Convert to JSON
-        return response.json();
+        return response.text();
     }).then(function(j) {
         // Yay, `j` is a JavaScript object
         console.log(j); 
