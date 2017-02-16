@@ -136,7 +136,7 @@ $("#signinclick").click(function(){
     }).then(
         function(response){
             // if(response.ok) { 
-                console.log(response.json());
+                console.log(response);
                 var contentType = response.headers.get("content-type");
                 if(contentType && contentType.indexOf("application/json") !== -1) {
                     return response.json().then(function(json) {
