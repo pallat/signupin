@@ -92,7 +92,7 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 
 <section class="signup-section">
 <div class="login">
-<form>
+<form id="signup-form">
 <ul class="ul-list">
 <li><input id="email" type="email" required class="input" placeholder="Your Email"/><span class="icon"><i class="fa fa-user"></i></span></li>
 <li><input id="password" type="password" required class="input" placeholder="Password"/><span class="icon"><i class="fa fa-lock"></i></span></li>
@@ -111,11 +111,12 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 
 <script type="text/javascript">
 $("#signupclick").click(function(){
+    console.log("click");
     $.ajax({
             type: "POST",
             url: "https://murmuring-retreat-56179.herokuapp.com/signup",
             crossDomain: true,
-            data:JSON.stringify({email:$("#email").val(), password:$("#password").val()}),
+            data: JSON.parse($("#signup-form").serializeArray()),
             success: function (data) {
                 console.log("success");
                 // do something with server response data
