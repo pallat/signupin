@@ -21,36 +21,57 @@
   <div class="form-group">
     <label class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <p class="form-control-static">email@example.com</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      <input id="pemail" type="email" class="form-control" id="inputFullname" placeholder="Email">
     </div>
   </div>
   <div class="form-group">
     <label for="inputFullname" class="col-sm-2 control-label">Fullname</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputFullname" placeholder="Fullname">
+      <input id="fullname" type="text" class="form-control" id="inputFullname" placeholder="Fullname">
     </div>
   </div>
   <div class="form-group">
     <label for="inputAddress" class="col-sm-2 control-label">Address</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputAddress" placeholder="Address">
+      <input id="address" type="text" class="form-control" id="inputAddress" placeholder="Address">
     </div>
   </div>
   <div class="form-group">
     <label for="inputTelephone" class="col-sm-2 control-label">Telephone</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputTelephone" placeholder="Telephone">
+      <input id="telephone" type="text" class="form-control" id="inputTelephone" placeholder="Telephone">
     </div>
   </div>
+
+  <button id="updateProfile" type="button" class="btn btn-default">Update</button>
 </div>
 
 <script type="text/javascript">
+  $('#updateProfile').click(function(){
+    fetch("http://murmuring-retreat-56179.herokuapp.com/profile",
+    {
+        method: "POST",
+        body: JSON.stringify({
+          email: $('#pemail').val(), 
+          fullname: $('#fullname').val(),
+          address: $('#address').val(),
+          telephone: $('#telephone').val()
+          }),
+      headers: new Headers({
+        'Authorization':  'Bearer '+localStorage.getItem("token"),
+      })
+    }).then(
+        function(data){
+            alert("update success")
+        }
+    ).catch(
+        function(err){
+            console.log(err);
+        }
+    );
+
+  });
+
   function loadProfile() {
     var email = localStorage.getItem("email");
 
@@ -65,7 +86,10 @@
                 return data.json();
             }
         ).then(function(data) {
-            console.log(data);
+            $('#pemail').val(data.email);
+            $('#fullname').val(data.Fullname);
+            $('#address').val(data.Address);
+            $('#telephone').val(data.Telephone);
         })
         .catch(
             function(err){
