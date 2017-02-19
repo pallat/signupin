@@ -112,7 +112,6 @@ $("#signupclick").click(function(){
     fetch("http://murmuring-retreat-56179.herokuapp.com/signup",
     {
         method: "POST",
-        mode: 'no-cors',
         body: JSON.stringify({email: $('#email').val(), password: $('#password').val()})
     }).then(
         function(data){
@@ -136,6 +135,7 @@ $("#signinclick").click(function(){
         }
     ).then(function(data) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("email", $('#signin-email').val());
         window.location.replace("/profile.html");
     })
     .catch(
