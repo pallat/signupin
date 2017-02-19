@@ -109,7 +109,6 @@ li,ul,body,input{margin:0; padding:0; list-style:none}
 
 <script type="text/javascript">
 $("#signupclick").click(function(){
-    console.log("click");
     fetch("http://murmuring-retreat-56179.herokuapp.com/signup",
     {
         method: "POST",
@@ -127,31 +126,19 @@ $("#signupclick").click(function(){
 });
 
 $("#signinclick").click(function(){
-    console.log("click");
     fetch("http://murmuring-retreat-56179.herokuapp.com/login",
     {
-        method: "POST",
-        mode: 'no-cors',
+    	method: 'POST', 
         body: JSON.stringify({email: $('#signin-email').val(), password: $('#signin-password').val()})
     }).then(
-        function(response){
-            console.log(response.type);
-            console.log(response.headers());
-            // return response.json();
-            // if(response.ok) { 
-                // var contentType = response.headers.get("content-type");
-                // if(contentType && contentType.indexOf("application/json") !== -1) {
-                //     return response.json();
-                // } else {
-                //     console.log("Oops, we haven't got JSON!");
-                // }
-            // }
+        function(res) {
+            return res.json();
         }
-    ).then(function(json) {
-        console.log(json);
-        // localStorage.setItem("token", json);
-        // window.location.replace("/profile.html");
-    }).catch(
+    ).then(function(data) {
+        localStorage.setItem("token", data.token);
+        window.location.replace("/profile.html");
+    })
+    .catch(
         function(err){
             console.log(err);
         }
